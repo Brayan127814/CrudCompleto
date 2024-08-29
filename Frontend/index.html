@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD con API</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Estilo adicional para alinear correctamente los botones y formularios */
+        .form-container {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-container h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .card-header{
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">CRUD de Usuarios</h1>
+
+        <!-- Formulario de Creación y Actualización en dos filas -->
+        <div class="row">
+            <!-- Formulario de Creación -->
+            <div class="col-md-6">
+                <div class="form-container">
+                    <h2>Crear Usuario</h2>
+                    <form id="create-form">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="create-name" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="create-name" placeholder="Ingresa tu nombre" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="create-email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="create-email" placeholder="Ingresa tu email" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Crear Usuario</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Formulario de Actualización -->
+            <div class="col-md-6">
+                <div class="form-container">
+                    <h2>Actualizar Usuario</h2>
+                    <form id="update-form">
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label for="update-id" class="form-label">ID del Usuario</label>
+                                <input type="number" class="form-control" id="update-id" placeholder="ID" required>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="update-name" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="update-name" placeholder="Nuevo nombre" required>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="update-email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="update-email" placeholder="Nuevo email" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-warning w-100">Actualizar Usuario</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+
+        <!-- Tabla de Usuarios -->
+        <div class="card mt-4">
+            <div class="card-header"><span>Lista de Usuarios</span><button id='btn-abrir'type="button" class="btn btn-primary">Mostrar Usuarios</button></div>
+            <div class="card-body">
+                <table class="table table-bordered table-striped" id="users-table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Email</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="products-list">
+                        <!-- Datos de usuarios se insertarán aquí -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS y dependencias -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>
