@@ -1,25 +1,23 @@
-
-const userModels = require('../config/userModels')
+import { createUsers, deleteUsers, getUsers, getUsersID, updateUsers } from '../config/userModels.mjs'
 
 //crear usuarios
 
-async function createUsers(req, res) {
+export async function createUsersAll(req, res) {
 
     try {
         const { name, email } = req.body
-        const response = await userModels.createUsers(name, email)
+        const response = await createUsers(name, email)
         res.status(201).json({ id: response, name, email })
     } catch (error) {
-        console.log(error)
         res.status(500).json({ mensaje: 'Error interno del servidor' })
     }
 }
 
 //obtenr usuarios
-async function getUsers(req , res) {
+ export async function getUsersAll(req , res) {
 
     try {
-        const results = await userModels.getUsers()
+        const results = await getUsers()
         res.status(201).json(results)
     } catch (error) {
         res.status(501).json({ mensaje: 'Error interno del servidor' })
@@ -28,9 +26,9 @@ async function getUsers(req , res) {
 }
 
 //obtener datos de usuarios por medio del id
-async function getUsersID(req, res) {
+ export async function getUsersIDAll(req, res) {
     try {
-        const results = await userModels.getUsersID(req.params.id)
+        const results = await getUsersID(req.params.id)
         if (!results) {
             res.status(404).json({mensaje:'Not found'})
         }
@@ -41,30 +39,24 @@ async function getUsersID(req, res) {
 }
 
 //Actualizar datos de usuario
-async function updateUsers(req, res) {
+ export async function updateUsersID(req, res) {
     try {
         const { name, email } = req.body
-        await userModels.updateUsers(req.params.id, name, email)
+        await updateUsers(req.params.id, name, email)
         res.status(201).json({ mensaje: 'Datos actualizados' })
     } catch (error) {
+        console.error('este es el error', error)
         res.status(500).json({ mensaje: 'Error interno del servidor' })
     }
 }
 
 //elimar datos de usuario
-async function deleteUsers(req, res) {
+ export async function deleteUsersID(req, res) {
     try {
-        await userModels.deleteUsers(req.params.id)
+        await deleteUsers(req.params.id)
         res.status(201).json({ mensaje: 'Datos eliminados' })
     } catch (error) {
-        res.status(5000).json({ mensaje: 'Error interno del servidor' })
+        res.status(500).json({ mensaje: 'Error interno del servidor' })
     }
 }
 
-module.exports = {
-    createUsers,
-    getUsers,
-    getUsersID,
-    updateUsers,
-    deleteUsers
-}
